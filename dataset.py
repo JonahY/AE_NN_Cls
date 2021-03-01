@@ -12,31 +12,25 @@ from torch import optim
 import datetime
 
 
-def classify_provider(features_path, label_path, n_splits, batch_size, num_workers, method='origin'):
-    # Amp,RiseT,Dur,Eny,RMS,Counts
-    with open(features_path, 'r') as f:
-        feature = np.array([i.split(',')[6:-4] for i in f.readlines()[1:]])
-    feature = feature.astype(np.float32)
-
-    with open(label_path, 'r') as f:
-        label = np.array([i.strip() for i in f.readlines()[1:]])
-    label = label.astype(np.float32).reshape(-1, 1)
-    label[np.where(label == 2)] = 0
-    ext = np.zeros([feature.shape[0], 1]).astype(np.float32)
-    ext[np.where(label == 0)[0].tolist()] = 1
+def classify_provider(fold, n_splits, batch_size, num_workers, method='15_select'):
+    data = pd.read_csv(fold).astype(np.float32)
+    feature = data.iloc[:, :-1]
+    label = np.array(data.iloc[:, -1].tolist()).reshape(-1, 1)
+    ext = np.zeros([label.shape[0], 1]).astype(np.float32)
+    ext[np.where(label == 0)[0]] = 1
     label = np.concatenate((label, ext), axis=1)
 
-    df = pd.DataFrame(feature)
-    df.columns = ['Amp', 'RiseT', 'Dur', 'Eny', 'RMS', 'Counts']
-    df['Counts/Dur'] = df['Counts'] / df['Dur']
-    df['RiseT/Dur'] = df['RiseT'] / df['Dur']
-    df['Eny/Dur'] = df['Eny'] / df['Dur']
-    df['Amp*RiseT'] = df['Amp'] * df['RiseT']
+    if method == '6_select':
+        feature['Counts/Dur'] = feature['Counts'] / feature['Dur']
+        feature['RiseT/Dur'] = feature['RiseT'] / feature['Dur']
+        feature['Eny/Dur'] = feature['Eny'] / feature['Dur']
+        feature['Amp*RiseT'] = feature['Amp'] * feature['RiseT']
+        feature = feature[['Eny', 'Amp*RiseT', 'Dur', 'RMS', 'Counts/Dur', 'RiseT/Dur']].values
+    else:
+        feature = feature.values
 
-    if method == '10_select':
-        feature = df.values
-    elif method == '6_select':
-        feature = df[['Eny', 'Amp*RiseT', 'Dur', 'RMS', 'Counts/Dur', 'RiseT/Dur']].values
+    # mean = np.average(feature, axis=0).reshape(1, -1)
+    # mean = np.repeat(mean, feature.shape[0], axis=0)
 
     train_dfs = list()
     val_dfs = list()
@@ -51,7 +45,7 @@ def classify_provider(features_path, label_path, n_splits, batch_size, num_worke
         train_dfs.append([df_temp[0], df_temp[2]])
         val_dfs.append([df_temp[1], df_temp[3]])
         all_dfs.append([np.concatenate((df_temp[0], df_temp[1]), axis=0),
-                         np.concatenate((df_temp[2], df_temp[3]), axis=0)])
+                        np.concatenate((df_temp[2], df_temp[3]), axis=0)])
         # print(len(train_dfs), len(val_dfs), len(all_dfs))
 
     dataloaders = list()
@@ -62,18 +56,18 @@ def classify_provider(features_path, label_path, n_splits, batch_size, num_worke
         train_dataloader = DataLoader(train_dataset,
                                       batch_size=batch_size,
                                       num_workers=num_workers,
-                                      pin_memory=True,
+                                      pin_memory=False,
                                       shuffle=True)
         val_dataloader = DataLoader(val_dataset,
                                     batch_size=batch_size,
                                     num_workers=num_workers,
-                                    pin_memory=True,
+                                    pin_memory=False,
                                     shuffle=False)
         all_dataloader = DataLoader(all_dataset,
-                                     batch_size=batch_size,
-                                     num_workers=num_workers,
-                                     pin_memory=True,
-                                     shuffle=False)
+                                    batch_size=batch_size,
+                                    num_workers=num_workers,
+                                    pin_memory=False,
+                                    shuffle=False)
         dataloaders.append([train_dataloader, val_dataloader, all_dataloader])
     return dataloaders
 

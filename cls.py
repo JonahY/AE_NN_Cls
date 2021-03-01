@@ -19,6 +19,8 @@ from solver import Solver
 from meter import Meter
 from network import Classify_model
 from dataset import classify_provider
+import warnings
+warnings.filterwarnings('ignore', category=FutureWarning)
 
 
 class TrainVal():
@@ -26,9 +28,9 @@ class TrainVal():
         self.layer = config.layer
         self.method = config.method
         self.model = Classify_model(self.layer, self.method, training=True)
-        if torch.cuda.is_available():
-            self.model = torch.nn.DataParallel(self.model)
-            self.model = self.model.cuda()
+        # if torch.cuda.is_available():
+        #     self.model = torch.nn.DataParallel(self.model)
+        #     self.model = self.model.cuda()
 
         self.lr = config.lr
         self.weight_decay = config.weight_decay
@@ -36,8 +38,8 @@ class TrainVal():
         self.fold = fold
         self.max_accuracy_valid = 0
         self.solver = Solver(self.model, self.method)
-        self.criterion = torch.nn.MSELoss()
-        # self.criterion = torch.nn.CrossEntropyLoss()
+        # self.criterion = torch.nn.MSELoss()
+        self.criterion = torch.nn.CrossEntropyLoss()
 
         # 初始化tensorboard
         TIMESTAMP = "{0:%Y-%m-%dT%H-%M-%S-%d}-classify".format(datetime.datetime.now(), fold)
@@ -47,8 +49,8 @@ class TrainVal():
         #     os.makedirs(self.model_path)
 
     def train(self, train_loader, test_loader):
-        # optimizer = optim.SGD(self.model.module.parameters(), self.lr, weight_decay=self.weight_decay)
-        optimizer = optim.Adam(self.model.module.parameters(), self.lr, weight_decay=self.weight_decay)
+        # optimizer = optim.SGD(self.model.parameters(), self.lr, weight_decay=self.weight_decay)
+        optimizer = optim.Adam(self.model.parameters(), self.lr, weight_decay=self.weight_decay)
         lr_scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, self.epoch + 10)
         global_step = 0
 
@@ -86,9 +88,15 @@ class TrainVal():
             else:
                 is_best = False
 
+            # state = {
+            #     'epoch': epoch,
+            #     'state_dict': self.model.module.state_dict(),
+            #     'max_accuracy_valid': self.max_accuracy_valid,
+            # }
+
             state = {
                 'epoch': epoch,
-                'state_dict': self.model.module.state_dict(),
+                'state_dict': self.model.state_dict(),
                 'max_accuracy_valid': self.max_accuracy_valid,
             }
 
@@ -130,22 +138,20 @@ class TrainVal():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--features_path', type=str, default=r'./pri_database.txt')
-    parser.add_argument('--label_path', type=str, default=r'./label.txt')
+    parser.add_argument('--fold', type=str, default=r'./Ni_dislocation.csv')
     parser.add_argument('--save_path', type=str, default='./checkpoints')
-    parser.add_argument('--class_num', type=int, default=2)
     parser.add_argument('--num_workers', type=int, default=cpu_count())
     parser.add_argument('--lr', type=float, default=0.001, help='init lr')
     parser.add_argument('--weight_decay', type=float, default=0, help='weight_decay in optimizer')
     parser.add_argument('--n_splits', type=int, default=1, help='n_splits_fold')
-    parser.add_argument('--batch_size', type=int, default=16, help='batch size')
+    parser.add_argument('--batch_size', type=int, default=128, help='batch size')
     parser.add_argument('--epoch', type=int, default=150, help='epoch')
-    parser.add_argument("--layer", default=[10, 10, 10])
-    parser.add_argument("--method", type=str, default='6_select', help='origin, 10_select or 6_select')
+    parser.add_argument("--layer", type=int, nargs='+', default=[10, 10, 10])
+    parser.add_argument("--method", type=str, default='origin', help='origin, 15_select or 6_select')
     config = parser.parse_args()
+    print(config)
 
-    dataloaders = classify_provider(config.features_path, config.label_path, config.n_splits,
-                                    config.batch_size, config.num_workers, config.method)
+    dataloaders = classify_provider(config.fold, config.n_splits, config.batch_size, config.num_workers, config.method)
     for fold_index, [train_loader, valid_loader, test_loader] in enumerate(dataloaders):
         train_val = TrainVal(config, fold_index)
         train_val.train(train_loader, test_loader)

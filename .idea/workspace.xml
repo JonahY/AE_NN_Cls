@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="856aa83c-1276-423b-9778-e8ef884fff11" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="f8a8568d-bb20-4db3-b97e-92ccf581f4a2" />
+  <component name="ProjectId" id="1neFSH9QnIeqfV4sxkja4TKCzLy" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../AE/run" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager" selected="Python.dataset">
+    <configuration name="dataset" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="AE_NN_Cls" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dataset.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="predict" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="AE_NN_Cls" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/predict.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.dataset" />
+      <item itemvalue="Python.predict" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.dataset" />
+        <item itemvalue="Python.predict" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="856aa83c-1276-423b-9778-e8ef884fff11" name="Default Changelist" comment="" />
+      <created>1611742647757</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1611742647757</updated>
+      <workItem from="1611742648814" duration="29743000" />
+      <workItem from="1611891178737" duration="33000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="183" key="#Deployment" timestamp="1611743116324">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="552" y="183" key="#Deployment/0.0.1920.1050@0.0.1920.1050" timestamp="1611743116324" />
+    <state x="605" y="200" key="#Options" timestamp="1611743191583">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="605" y="200" key="#Options/0.0.1920.1050@0.0.1920.1050" timestamp="1611743191583" />
+    <state x="417" y="-901" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611831066943">
+      <screen x="3" y="-1080" width="1920" height="1050" />
+    </state>
+    <state x="417" y="-901" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831066943" />
+    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1611744010002" />
+    <state x="743" y="-801" key="FileChooserDialogImpl" timestamp="1611891200039">
+      <screen x="3" y="-1080" width="1920" height="1050" />
+    </state>
+    <state x="743" y="-801" key="FileChooserDialogImpl/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611891200039" />
+    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1611742742345" />
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1611831062597">
+      <screen x="3" y="-1080" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
+    <state width="1877" height="285" key="GridCell.Tab.0.center" timestamp="1611831062597">
+      <screen x="3" y="-1080" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
+    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
+    <state width="1877" height="285" key="GridCell.Tab.0.left" timestamp="1611831062597">
+      <screen x="3" y="-1080" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
+    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
+    <state width="1877" height="285" key="GridCell.Tab.0.right" timestamp="1611831062597">
+      <screen x="3" y="-1080" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
+    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
+    <state x="464" y="-911" key="SettingsEditor" timestamp="1611810153670">
+      <screen x="3" y="-1080" width="1920" height="1050" />
+    </state>
+    <state x="464" y="-911" key="SettingsEditor/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611810153670" />
+    <state x="461" y="169" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1611742856560" />
+    <state x="441" y="-851" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1611831643435">
+      <screen x="3" y="-1080" width="1920" height="1050" />
+    </state>
+    <state x="441" y="-851" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831643435" />
+    <state x="438" y="229" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1920.1050@0.0.1920.1050" timestamp="1611746102369" />
+    <state x="751" y="409" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration" timestamp="1611742847660">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="751" y="409" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.0.1920.1050@0.0.1920.1050" timestamp="1611742847660" />
+    <state x="851" y="255" key="ftp.server.browser" timestamp="1611743113025">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="851" y="255" key="ftp.server.browser/0.0.1920.1050@0.0.1920.1050" timestamp="1611743113025" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/AE_NN_Cls$dataset.coverage" NAME="dataset Coverage Results" MODIFIED="1611743999312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AE_NN_Cls$predict.coverage" NAME="predict Coverage Results" MODIFIED="1611830993246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

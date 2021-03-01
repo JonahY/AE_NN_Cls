@@ -22,9 +22,9 @@ class Predict():
         self.layer = config.layer
         self.method = config.method
         self.model = Classify_model(self.layer, self.method, training=True)
-        if torch.cuda.is_available():
-            self.model = torch.nn.DataParallel(self.model)
-            self.model = self.model.cuda()
+        # if torch.cuda.is_available():
+        #     self.model = torch.nn.DataParallel(self.model)
+        #     self.model = self.model.cuda()
 
         self.lr = config.lr
         self.weight_decay = config.weight_decay
@@ -37,8 +37,8 @@ class Predict():
     def validation(self, test_loader):
         self.model.eval()
         self.model.train(False)
-        checkpoint = torch.load(self.weight_path)
-        self.model.module.load_state_dict(checkpoint['state_dict'])
+        checkpoint = torch.load(self.weight_path, map_location=torch.device('cpu'))
+        self.model.load_state_dict(checkpoint['state_dict'])
         meter = Meter()
         tbar = tqdm.tqdm(test_loader, ncols=80)
         loss_sum = 0
@@ -62,25 +62,39 @@ class Predict():
             (class_accuracy[0], class_accuracy[1], neg_accuracy, pos_accuracy, accuracy))
         return class_neg_accuracy, class_pos_accuracy, class_accuracy, neg_accuracy, pos_accuracy, accuracy, loss_mean
 
+    def predict(self, dataset):
+        self.model.eval()
+        self.model.train(False)
+        checkpoint = torch.load(self.weight_path, map_location=torch.device('cpu'))
+        self.model.load_state_dict(checkpoint['state_dict'])
+
+        with torch.no_grad():
+            labels_predict = self.solver.forward(dataset)
+            labels_predict = torch.sigmoid(labels_predict)
+
+        return labels_predict
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--features_path', type=str, default=r'./pri_database.txt')
-    parser.add_argument('--label_path', type=str, default=r'./label.txt')
-    parser.add_argument('--weight_path', type=str, default='./checkpoints/origin/2020-11-16T10-33-35-16-classify/classify_fold0_origin_0.959231.pth')
+    parser.add_argument('--fold', type=str, default=r'./Nano_Ni_3.csv')
+    parser.add_argument('--weight_path', type=str, default='./checkpoints/6_select/2021-01-28T14-15-40-28-classify/classify_fold0_6_select_0.939086.pth')
     parser.add_argument('--class_num', type=int, default=2)
     parser.add_argument('--num_workers', type=int, default=cpu_count())
     parser.add_argument('--lr', type=float, default=0.001, help='init lr')
     parser.add_argument('--weight_decay', type=float, default=0, help='weight_decay in optimizer')
     parser.add_argument('--n_splits', type=int, default=1, help='n_splits_fold')
-    parser.add_argument('--batch_size', type=int, default=16, help='batch size')
+    parser.add_argument('--batch_size', type=int, default=64, help='batch size')
     parser.add_argument('--epoch', type=int, default=100, help='epoch')
-    parser.add_argument("--layer", type=list, default=[10, 15, 15])
+    parser.add_argument("--layer", type=list, default=[10, 10, 10])
     parser.add_argument("--method", type=str, default='origin', help='origin, 10_select or 6_select')
     config = parser.parse_args()
 
-    dataloaders = classify_provider(config.features_path, config.label_path, config.n_splits,
-                                    config.batch_size, config.num_workers)
-    for fold_index, [train_loader, valid_loader, all_dataloader] in enumerate(dataloaders):
-        train_val = Predict(config)
-        train_val.validation(all_dataloader)
+    # dataloaders = classify_provider(config.features_path, config.label_path, config.n_splits,
+    #                                 config.batch_size, config.num_workers)
+    # for fold_index, [train_loader, valid_loader, all_dataloader] in enumerate(dataloaders):
+    #     train_val = Predict(config)
+    #     train_val.validation(all_dataloader)
+
+    train_val = Predict(config)
+    res = train_val.predict(torch.from_numpy(pd.read_csv(config.fold).values).float())
