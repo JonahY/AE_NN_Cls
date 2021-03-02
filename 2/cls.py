@@ -22,7 +22,7 @@ warnings.filterwarnings('ignore', category=FutureWarning)
 
 class TrainVal():
     def __init__(self, config, fold):
-        self.model = ClassifyResNet(config.model_name, 4, training=True)
+        self.model = ClassifyResNet(config.model_name, config.class_num, training=True)
         if torch.cuda.is_available():
             self.model = torch.nn.DataParallel(self.model)
             self.model = self.model.cuda()
@@ -144,14 +144,14 @@ class TrainVal():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--batch_size', type=int, default=24, help='batch size')
-    parser.add_argument('--epoch', type=int, default=30, help='epoch')
-    parser.add_argument('--n_splits', type=int, default=5, help='n_splits_fold')
+    parser.add_argument('--batch_size', type=int, default=128, help='batch size')
+    parser.add_argument('--epoch', type=int, default=100, help='epoch')
+    parser.add_argument('--n_splits', type=int, default=10, help='n_splits_fold')
     parser.add_argument('--crop', type=bool, default=False, help='if true, crop image to [height, width].')
     parser.add_argument('--height', type=int, default=None, help='the height of cropped image')
     parser.add_argument('--width', type=int, default=None, help='the width of cropped image')
     # model set
-    parser.add_argument('--model_name', type=str, default='unet_resnet34',
+    parser.add_argument('--model_name', type=str, default='unet_resnet50',
                         help='unet_resnet34/unet_se_resnext50_32x4d/unet_efficientnet_b4'
                              '/unet_resnet50/unet_efficientnet_b4')
     # model hyper-parameters
@@ -161,7 +161,7 @@ if __name__ == "__main__":
     parser.add_argument('--weight_decay', type=float, default=0, help='weight_decay in optimizer')
     # dataset
     parser.add_argument('--save_path', type=str, default='./checkpoints')
-    parser.add_argument('--root', type=str, default=r'H:\VALLEN\Ni-tension test-pure-1-0.01-AE-20201030')
+    parser.add_argument('--root', type=str, default='/home/Yuanbincheng/data/Ni-tension test-pure-1-0.01-AE-20201030')
     parser.add_argument('--fold', type=str, default='train info.csv')
     config = parser.parse_args()
     print(config)
@@ -180,7 +180,7 @@ if __name__ == "__main__":
         config.width
         )
     for fold_index, [train_loader, valid_loader] in enumerate(dataloaders):
-        if fold_index != 1:
-            continue
+        # if fold_index != 1:
+        #     continue
         train_val = TrainVal(config, fold_index)
         train_val.train(train_loader, valid_loader)

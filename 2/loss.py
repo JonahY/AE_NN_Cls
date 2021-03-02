@@ -18,7 +18,7 @@ class ClassifyLoss(nn.Module):
         truth = truth.view(batch_size, num_class)
         assert(logit.shape == truth.shape)
 
-        loss = F.binary_cross_entropy_with_logits(logit, truth, reduction='none')
+        loss = F.binary_cross_entropy_with_logits(logit, truth.float(), reduction='none')
 
         if self.weight is None:
             loss = loss.mean()

@@ -95,7 +95,7 @@ def get_transforms(phase, image, mean, std, crop=False, height=None, width=None)
 
 
 if __name__ == "__main__":
-    data_folder = r"H:\VALLEN\Ni-tension test-pure-1-0.01-AE-20201030"
+    data_folder = "/home/Yuanbincheng/data/Ni-tension test-pure-1-0.01-AE-20201030"
     df_path = "train info.csv"
     mean = (0.485, 0.456, 0.406)
     std = (0.229, 0.224, 0.225)

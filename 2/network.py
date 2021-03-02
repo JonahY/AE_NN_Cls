@@ -60,7 +60,7 @@ class Model():
 
 
 class ClassifyResNet(Module):
-    def __init__(self, model_name, class_num=4, training=True, encoder_weights='imagenet'):
+    def __init__(self, model_name, class_num=3, training=True, encoder_weights='imagenet'):
         super(ClassifyResNet, self).__init__()
         self.class_num = class_num
         model = Model(model_name, encoder_weights=encoder_weights, class_num=class_num).create_model_cpu()
