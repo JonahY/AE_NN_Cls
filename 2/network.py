@@ -71,7 +71,7 @@ class ClassifyResNet(Module):
             self.feature = nn.Conv2d(3, 32, kernel_size=1)
         elif model_name == 'unet_resnet50':
             self.feature = nn.Sequential(
-                nn.Conv2d(2048, 512, kernel_size=1),
+                nn.Conv2d(3, 512, kernel_size=1),
                 nn.ReLU(),
                 nn.Conv2d(512, 32, kernel_size=1)
             )

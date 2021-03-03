@@ -144,7 +144,7 @@ class TrainVal():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--batch_size', type=int, default=128, help='batch size')
+    parser.add_argument('--batch_size', type=int, default=16, help='batch size')
     parser.add_argument('--epoch', type=int, default=100, help='epoch')
     parser.add_argument('--n_splits', type=int, default=10, help='n_splits_fold')
     parser.add_argument('--crop', type=bool, default=False, help='if true, crop image to [height, width].')
@@ -157,8 +157,8 @@ if __name__ == "__main__":
     # model hyper-parameters
     parser.add_argument('--class_num', type=int, default=3)
     parser.add_argument('--num_workers', type=int, default=8)
-    parser.add_argument('--lr', type=float, default=5e-5, help='init lr')
-    parser.add_argument('--weight_decay', type=float, default=0, help='weight_decay in optimizer')
+    parser.add_argument('--lr', type=float, default=5e-4, help='init lr')
+    parser.add_argument('--weight_decay', type=float, default=1e-3, help='weight_decay in optimizer')
     # dataset
     parser.add_argument('--save_path', type=str, default='./checkpoints')
     parser.add_argument('--root', type=str, default='/home/Yuanbincheng/data/Ni-tension test-pure-1-0.01-AE-20201030')
