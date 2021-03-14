@@ -5,13 +5,6 @@
       <paths name="Yuanbincheng@115.154.225.172:22 password">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="Yuanbincheng@115.154.225.172:22 password (1)">
-        <serverdata>
-          <mappings>
             <mapping deploy="/home/Yuanbincheng/project/dislocation_cls/2" local="$PROJECT_DIR$/2" web="/" />
           </mappings>
         </serverdata>

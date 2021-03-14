@@ -73,7 +73,7 @@ class ClassifyResNet(Module):
         self.encoder = model.encoder
         self.module = Module
         if model_name == 'unet_resnet34':
-            self.feature = nn.Conv2d(3, 32, kernel_size=1)
+            self.feature = nn.Conv2d(64, 32, kernel_size=1)
         elif model_name == 'unet_resnet50':
             self.feature = nn.Sequential(
                 nn.Conv2d(3, 512, kernel_size=1),
@@ -105,13 +105,12 @@ class ClassifyResNet(Module):
 
     def forward(self, x):
         # print(x.size())
-        x = self.encoder(x)
+        x1 = self.encoder(x)
         # for i in x:
             # print(i.size())
-        tmp = x[0]
-        x = F.dropout(x[0], 0.5, training=self.training)
+        x = F.dropout(x1[1], 0.5, training=self.training)
         x = F.adaptive_avg_pool2d(x, 1)
         x = self.feature(x)
         logit = self.logit(x)
 
-        return logit, tmp
+        return logit, x1[0]

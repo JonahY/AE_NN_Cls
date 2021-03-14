@@ -7,8 +7,8 @@ from albumentations import (
     Compose, HorizontalFlip, VerticalFlip, CLAHE, RandomRotate90, HueSaturationValue,
     RandomBrightness, RandomContrast, RandomGamma, OneOf,
     ToFloat, ShiftScaleRotate, GridDistortion, ElasticTransform, JpegCompression, HueSaturationValue,
-    RGBShift, RandomBrightnessContrast, RandomContrast, Blur, MotionBlur, MedianBlur, GaussNoise,CenterCrop,
-    IAAAdditiveGaussianNoise,GaussNoise,Cutout,Rotate, Normalize, Crop, RandomCrop
+    RGBShift, RandomBrightnessContrast, RandomContrast, Blur, MotionBlur, MedianBlur, GaussNoise, CenterCrop,
+    IAAAdditiveGaussianNoise, GaussNoise, Cutout, Rotate, Normalize, Crop, RandomCrop, Resize
 )
 
 sys.path.append('.')
@@ -16,9 +16,7 @@ sys.path.append('.')
 
 def data_augmentation(original_image, crop=False, height=None, width=None):
     augmentations = Compose([
-        HorizontalFlip(p=0.4),
-        VerticalFlip(p=0.4),
-        ShiftScaleRotate(shift_limit=0.07, rotate_limit=0, p=0.4),
+        Resize(224, 224),
         # 直方图均衡化
         CLAHE(p=0.3),
 
@@ -59,3 +57,20 @@ def image_torch(image, mean=None, std=None):
     image = image.permute(1, 2, 0).numpy()
 
     return image
+
+
+def conv_image_visual(conv_image, image_weight, image_height, cy, cx, channels):
+    '''
+    slice off one image ande remove the image dimension
+    original image is a 4d tensor[batche_size,weight,height,channels]
+    '''
+    conv_image = tf.slice(conv_image, (0, 0, 0, 0), (1, -1, -1, -1))
+    conv_image = tf.reshape(conv_image, (image_height, image_weight, channels))
+    # add a couple of pixels of zero padding around the image
+    image_weight += 4
+    image_height += 4
+    conv_image = tf.image.resize_image_with_crop_or_pad(conv_image, image_height, image_weight)
+    conv_image = tf.reshape(conv_image, (image_height, image_weight, cy, cx))
+    conv_image = tf.transpose(conv_image, (2, 0, 3, 1))
+    conv_image = tf.reshape(conv_image, (1, cy * image_height, cx * image_weight, 1))
+    return conv_image

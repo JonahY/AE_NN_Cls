@@ -18,13 +18,19 @@ from network import ClassifyResNet
 from dataset import classify_provider
 from loss import ClassifyLoss
 from ResNeXt import ResNeXt
+# from Alexnet import AlexNet
+from alexnet_pytorch import AlexNet
+from VGG import *
 import warnings
 warnings.filterwarnings('ignore', category=FutureWarning)
 
 
 class TrainVal():
     def __init__(self, config):
-        self.model = ClassifyResNet(config.model_name, config.class_num, training=True)
+        # self.model = ClassifyResNet(config.model_name, config.class_num, training=True)
+        # self.model = AlexNet(config.class_num)
+        self.model = AlexNet.from_pretrained('alexnet', num_classes=config.class_num)
+        # self.model = VGG_19(config.class_num)
         if torch.cuda.is_available():
             self.device = torch.device("cuda:%i" % config.device[0])
             self.model = torch.nn.DataParallel(self.model, device_ids=config.device)
@@ -42,7 +48,7 @@ class TrainVal():
         self.solver = Solver(self.model, self.device)
 
         # 加载损失函数
-        self.criterion = ClassifyLoss()
+        self.criterion = ClassifyLoss(weight=[0.8, 0.2])
 
         # 创建保存权重的路径
         self.TIME = "{0:%Y-%m-%dT%H-%M-%S}-classify".format(datetime.datetime.now())
@@ -57,9 +63,9 @@ class TrainVal():
         seed_torch(self.seed)
 
     def train(self, dataloaders):
-        optimizer = optim.Adam(self.model.module.parameters(), self.lr, weight_decay=self.weight_decay)
-        # optimizer = optim.SGD(self.model.module.parameters(), self.lr, momentum=0.9,
-        #                       weight_decay=self.weight_decay, nesterov=True)
+        # optimizer = optim.Adam(self.model.module.parameters(), self.lr, weight_decay=self.weight_decay)
+        optimizer = optim.SGD(self.model.module.parameters(), self.lr, momentum=0.9,
+                              weight_decay=self.weight_decay, nesterov=True)
         lr_scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, self.epoch + 50)
         global_step = 0
 
@@ -83,14 +89,15 @@ class TrainVal():
                 for i, (images, labels) in enumerate(tbar):
                     # 网络的前向传播与反向传播
                     labels_predict = self.solver.forward(images)
-                    loss = self.solver.cal_loss(labels, labels_predict[0], self.criterion)
+                    labels_predict = labels_predict.unsqueeze(dim=2).unsqueeze(dim=3)
+                    loss = self.solver.cal_loss(labels, labels_predict, self.criterion)
                     # loss = F.cross_entropy(labels_predict[0], labels)
                     epoch_loss += loss.item()
                     self.solver.backword(optimizer, loss)
 
                     # 保存到tensorboard，每一步存储一个
                     self.writer.add_scalar('train_loss', loss.item(), global_step + i)
-                    self.writer.add_images('my_image_batch', labels_predict[1].cpu().numpy(), global_step + i)
+                    # self.writer.add_images('my_image_batch', labels_predict[1].cpu().detach().numpy(), global_step + i)
                     params_groups_lr = str()
                     for group_ind, param_group in enumerate(optimizer.param_groups):
                         params_groups_lr = params_groups_lr + 'params_group_%d' % (group_ind) + ': %.12f, ' % (
@@ -107,8 +114,8 @@ class TrainVal():
                     self.validation(valid_loader)
 
                 # Print the log info
-                print('Finish Epoch [%d/%d] | Average Loss: %.7f | Total accuracy: %0.4f |' % (
-                epoch, self.epoch, epoch_loss / len(tbar), accuracy))
+                print('Finish Epoch [%d/%d] | Average training Loss: %.7f | Average validation Loss: %.7f | Total accuracy: %0.4f |' % (
+                epoch, self.epoch, epoch_loss / len(tbar), loss_valid, accuracy))
 
                 if accuracy > self.max_accuracy_valid:
                     is_best = True
@@ -128,7 +135,7 @@ class TrainVal():
                 self.writer.add_scalar('valid_accuracy', accuracy, epoch)
                 self.writer.add_scalar('valid_class_0_accuracy', class_accuracy[0], epoch)
                 self.writer.add_scalar('valid_class_1_accuracy', class_accuracy[1], epoch)
-                self.writer.add_scalar('valid_class_2_accuracy', class_accuracy[2], epoch)
+                # self.writer.add_scalar('valid_class_2_accuracy', class_accuracy[2], epoch)
 
     def validation(self, valid_loader):
         self.model.eval()
@@ -140,11 +147,12 @@ class TrainVal():
             for i, (images, labels) in enumerate(tbar):
                 # 完成网络的前向传播
                 labels_predict = self.solver.forward(images)
-                loss = self.solver.cal_loss(labels, labels_predict[0], self.criterion)
+                labels_predict = labels_predict.unsqueeze(dim=2).unsqueeze(dim=3)
+                loss = self.solver.cal_loss(labels, labels_predict, self.criterion)
                 # loss = F.cross_entropy(labels_predict[0], labels)
                 loss_sum += loss.item()
 
-                meter.update(labels, labels_predict[0].cpu())
+                meter.update(labels, labels_predict.cpu())
 
                 descript = "Val Loss: {:.7f}".format(loss.item())
                 tbar.set_description(desc=descript)
@@ -152,11 +160,15 @@ class TrainVal():
 
         class_neg_accuracy, class_pos_accuracy, class_accuracy, neg_accuracy, pos_accuracy, accuracy = meter.get_metrics()
         print("Class_0_accuracy: %0.4f | Positive accuracy: %0.4f | Negative accuracy: %0.4f | \n"
-              "Class_1_accuracy: %0.4f | Positive accuracy: %0.4f | Negative accuracy: %0.4f | \n"
-              "Class_2_accuracy: %0.4f | Positive accuracy: %0.4f | Negative accuracy: %0.4f |" %
+              "Class_1_accuracy: %0.4f | Positive accuracy: %0.4f | Negative accuracy: %0.4f |"%
               (class_accuracy[0], class_pos_accuracy[0], class_neg_accuracy[0],
-               class_accuracy[1], class_pos_accuracy[1], class_neg_accuracy[1],
-               class_accuracy[2], class_pos_accuracy[2], class_neg_accuracy[2]))
+               class_accuracy[1], class_pos_accuracy[1], class_neg_accuracy[1]))
+        # print("Class_0_accuracy: %0.4f | Positive accuracy: %0.4f | Negative accuracy: %0.4f | \n"
+        #       "Class_1_accuracy: %0.4f | Positive accuracy: %0.4f | Negative accuracy: %0.4f | \n"
+        #       "Class_2_accuracy: %0.4f | Positive accuracy: %0.4f | Negative accuracy: %0.4f |" %
+        #       (class_accuracy[0], class_pos_accuracy[0], class_neg_accuracy[0],
+        #        class_accuracy[1], class_pos_accuracy[1], class_neg_accuracy[1],
+        #        class_accuracy[2], class_pos_accuracy[2], class_neg_accuracy[2]))
         return class_neg_accuracy, class_pos_accuracy, class_accuracy, neg_accuracy, pos_accuracy, accuracy, loss_mean
 
 
@@ -166,9 +178,9 @@ if __name__ == "__main__":
     parser.add_argument('--epoch', type=int, default=10, help='epoch')
     parser.add_argument('--n_splits', type=int, default=10, help='n_splits_fold')
     parser.add_argument("--device", type=int, nargs='+', default=[i for i in range(torch.cuda.device_count())])
-    parser.add_argument('--crop', type=bool, default=True, help='if true, crop image to [height, width].')
-    parser.add_argument('--height', type=int, default=300, help='the height of cropped image')
-    parser.add_argument('--width', type=int, default=300, help='the width of cropped image')
+    parser.add_argument('--crop', type=bool, default=False, help='if true, crop image to [height, width].')
+    parser.add_argument('--height', type=int, default=None, help='the height of cropped image')
+    parser.add_argument('--width', type=int, default=None, help='the width of cropped image')
     # model set
     parser.add_argument('--model_name', type=str, default='unet_resnet34',
                         help='unet_resnet34/unet_se_resnext50_32x4d/unet_efficientnet_b4'
@@ -181,7 +193,7 @@ if __name__ == "__main__":
     # dataset
     parser.add_argument('--save_path', type=str, default='./checkpoints')
     parser.add_argument('--root', type=str, default='/home/Yuanbincheng/data/Ni-tension test-pure-1-0.01-AE-20201030')
-    parser.add_argument('--fold', type=str, default='train info_cwt.csv')
+    parser.add_argument('--fold', type=str, default='train info_cwt_-noise.csv')
     config = parser.parse_args()
     print(config)
 
