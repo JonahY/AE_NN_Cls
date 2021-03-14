@@ -66,7 +66,7 @@ class AEClassDataset(Dataset):
 
     def __getitem__(self, idx):
         label = np.array(self.df.iloc[idx, :])
-        image_path = os.path.join(self.root, "train dataset", str(idx + 1) + '.jpg')
+        image_path = os.path.join(self.root, "train dataset_cwt", str(idx + 1) + '.jpg')
         img = cv2.imread(image_path)
         img = self.transforms(self.phase, img, self.mean, self.std, crop=self.crop, height=self.height, width=self.width)
         return img, label

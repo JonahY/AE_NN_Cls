@@ -8,13 +8,13 @@ import os
 
 
 class Solver():
-    def __init__(self, model):
+    def __init__(self, model, device):
         ''' 完成solver类的初始化
         Args:
             model: 网络模型
         '''
         self.model = model
-        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        self.device = device
 
     def forward(self, images):
         ''' 实现网络的前向传播功能
@@ -98,7 +98,7 @@ class Solver():
         optimizer.step()
         optimizer.zero_grad()
 
-    def save_checkpoint(self, save_path, state, is_best):
+    def save_checkpoint(self, save_path, state, is_best, accuracy):
         ''' 保存模型参数
 
         Args:
@@ -110,8 +110,8 @@ class Solver():
         '''
         torch.save(state, save_path)
         if is_best:
-            print('Saving Best Model.')
-            save_best_path = save_path.replace('.pth', '_best.pth')
+            print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Saving Best Model>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+            save_best_path = save_path.replace('.pth', '_best_{:.4f}.pth'.format(accuracy))
             shutil.copyfile(save_path, save_best_path)
     
     def load_checkpoint(self, load_path):

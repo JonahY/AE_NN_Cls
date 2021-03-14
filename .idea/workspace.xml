@@ -7,6 +7,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
     <envs>
       <env key="FLASK_APP" value="app" />
@@ -45,7 +52,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.cls">
+  <component name="RunManager" selected="Python.dataset (1)">
     <configuration name="cls" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="AE_NN_Cls" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -142,8 +149,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.cls" />
         <item itemvalue="Python.dataset (1)" />
+        <item itemvalue="Python.cls" />
         <item itemvalue="Python.dataset" />
         <item itemvalue="Python.predict" />
       </list>
@@ -160,7 +167,8 @@
       <workItem from="1611742648814" duration="29743000" />
       <workItem from="1611891178737" duration="33000" />
       <workItem from="1614560278132" duration="25464000" />
-      <workItem from="1614740729235" duration="5872000" />
+      <workItem from="1614740729235" duration="25854000" />
+      <workItem from="1615515089064" duration="21117000" />
     </task>
     <servers />
   </component>
@@ -178,9 +186,10 @@
     </state>
     <state x="605" y="200" key="#Options/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1614603108178" />
     <state x="605" y="200" key="#Options/0.0.1920.1050@0.0.1920.1050" timestamp="1611743191583" />
-    <state x="417" y="-901" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611831066943">
-      <screen x="3" y="-1080" width="1920" height="1050" />
+    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1614851382321">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1614851382321" />
     <state x="417" y="-901" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831066943" />
     <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1611744010002" />
     <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1614607601596">
@@ -189,28 +198,28 @@
     <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1614607601596" />
     <state x="743" y="-801" key="FileChooserDialogImpl/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611891200039" />
     <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1611742742345" />
-    <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1614780916604">
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1615166884467">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1614780916604" />
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1615166884467" />
     <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
     <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
-    <state width="1877" height="285" key="GridCell.Tab.0.center" timestamp="1614780916603">
+    <state width="1877" height="285" key="GridCell.Tab.0.center" timestamp="1615166884467">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1614780916603" />
+    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1615166884467" />
     <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
     <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
-    <state width="1877" height="285" key="GridCell.Tab.0.left" timestamp="1614780916603">
+    <state width="1877" height="285" key="GridCell.Tab.0.left" timestamp="1615166884467">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1614780916603" />
+    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1615166884467" />
     <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
     <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
-    <state width="1877" height="285" key="GridCell.Tab.0.right" timestamp="1614780916603">
+    <state width="1877" height="285" key="GridCell.Tab.0.right" timestamp="1615166884467">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1614780916603" />
+    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1615166884467" />
     <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
     <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1614588100068">
@@ -255,6 +264,6 @@
     <SUITE FILE_PATH="coverage/AE_NN_Cls$predict.coverage" NAME="predict Coverage Results" MODIFIED="1611830993246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AE_NN_Cls$dataset.coverage" NAME="dataset Coverage Results" MODIFIED="1611743999312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Cls$cls.coverage" NAME="cls Coverage Results" MODIFIED="1614771856239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
-    <SUITE FILE_PATH="coverage/Cls$dataset__1_.coverage" NAME="dataset (1) Coverage Results" MODIFIED="1614603470957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
+    <SUITE FILE_PATH="coverage/Cls$dataset__1_.coverage" NAME="dataset (1) Coverage Results" MODIFIED="1615166876222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
   </component>
 </project>

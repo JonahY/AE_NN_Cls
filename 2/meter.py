@@ -12,6 +12,7 @@ def metric(logit, truth, threshold=0.5):
 
     with torch.no_grad():
         logit = logit.view(batch_size, num_class)
+        print(logit)
         # truth = truth.view(batch_size, num_class)
 
         # probability = torch.sigmoid(logit)

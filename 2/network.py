@@ -8,7 +8,6 @@ import torch.nn.functional as F
 class Model():
     def __init__(self, model_name, encoder_weights='imagenet', class_num=4):
         self.model_name = model_name
-        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.class_num = class_num
         self.encoder_weights = encoder_weights
         if encoder_weights is None:
@@ -45,6 +44,14 @@ class Model():
         elif self.model_name == 'unet_efficientnet_b3':
             model = smp.Unet('efficientnet-b3', encoder_weights=self.encoder_weights, classes=self.class_num,
                              activation=None)
+        # Unet vgg 系列
+        elif self.model_name == 'vgg19':
+            model = smp.Unet('vvgg19', encoder_weights=self.encoder_weights, classes=self.class_num, activation=None)
+        elif self.model_name == 'vgg19_bn':
+            model = smp.Unet('vgg19_bn', encoder_weights=self.encoder_weights, classes=self.class_num, activation=None)
+        # Unet senet154 系列
+        elif self.model_name == 'senet154':
+            model = smp.Unet('senet154', encoder_weights=self.encoder_weights, classes=self.class_num, activation=None)
 
         return model
 
@@ -54,13 +61,11 @@ class Model():
         if torch.cuda.is_available():
             model = torch.nn.DataParallel(model)
 
-        model.to(self.device)
-
         return model
 
 
 class ClassifyResNet(Module):
-    def __init__(self, model_name, class_num=3, training=True, encoder_weights='imagenet'):
+    def __init__(self, model_name, class_num, training=True, encoder_weights='imagenet'):
         super(ClassifyResNet, self).__init__()
         self.class_num = class_num
         model = Model(model_name, encoder_weights=encoder_weights, class_num=class_num).create_model_cpu()
@@ -83,22 +88,30 @@ class ClassifyResNet(Module):
             )
         elif model_name == 'unet_efficientnet_b4':
             self.feature = nn.Sequential(
-                nn.Conv2d(448, 160, kernel_size=1),
+                nn.Conv2d(3, 160, kernel_size=1),
                 nn.ReLU(),
                 nn.Conv2d(160, 32, kernel_size=1)
             )
-        elif model_name == 'unet_efficientnet_b3':
-            self.feature = nn.Conv2d(384, 32, kernel_size=1)
+        elif model_name == 'senet154':
+            self.feature = nn.Sequential(
+                nn.Conv2d(2048, 512, kernel_size=1),
+                nn.ReLU(),
+                nn.Conv2d(512, 32, kernel_size=1)
+            )
 
         self.logit = nn.Conv2d(32, self.class_num, kernel_size=1)
 
         self.training = training
 
     def forward(self, x):
-        x = self.encoder(x)[0]
-        x = F.dropout(x, 0.5, training=self.training)
+        # print(x.size())
+        x = self.encoder(x)
+        # for i in x:
+            # print(i.size())
+        tmp = x[0]
+        x = F.dropout(x[0], 0.5, training=self.training)
         x = F.adaptive_avg_pool2d(x, 1)
         x = self.feature(x)
         logit = self.logit(x)
 
-        return logit
+        return logit, tmp
