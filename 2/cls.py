@@ -67,7 +67,7 @@ class TrainVal():
 
         self.solver = Solver(self.model, self.device)
 
-        self.criterion = ClassifyLoss(weight=[0.8, 0.2])
+        self.criterion = ClassifyLoss()
 
         self.TIME = "{0:%Y-%m-%dT%H-%M-%S}-classify".format(datetime.datetime.now())
         self.model_path = os.path.join(config.root, config.save_path, config.model_name, self.TIME)

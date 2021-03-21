@@ -16,9 +16,9 @@ def metric(logit, truth, threshold=0.5):
         logit = logit.view(batch_size, num_class)
         # truth = truth.view(batch_size, num_class)
 
-        probability = torch.sigmoid(logit)
+        # probability = torch.sigmoid(logit)
         # print(probability)
-        p = (probability > threshold).float()
+        p = (logit > threshold).float()
         t = (truth > 0.5).float()
 
         tp = ((p + t) == 2).float()  # True positives

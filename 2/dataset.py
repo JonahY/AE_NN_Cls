@@ -10,32 +10,35 @@ from torch.utils.data import DataLoader, Dataset
 from torchvision import transforms
 import sys
 from tqdm import tqdm
+from PIL import Image
+from utils import data_augmentation, image_torch
 
 sys.path.append('.')
-from utils import data_augmentation, image_torch
 warnings.filterwarnings("ignore")
 
 
-def classify_provider(root, fold, n_splits, batch_size, num_workers, mean, std, crop, height, width):
+def classify_provider(root, fold, n_splits, batch_size, num_workers, resize, mean, std, crop, height, width):
     df = pd.read_csv(os.path.join(root, fold), header=None)
-    labels_1dim = [np.argmax(np.array(df.iloc[i, :])) + 1 for i in range(df.count()[0])]
+    labels_1dim = np.argmax(np.array(df), axis=1)
 
     train_dfs = list()
     val_dfs = list()
     if n_splits != 1:
-        skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=69)
+        skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=55)
         for train_df_index, val_df_index in skf.split(df, labels_1dim):
-            train_dfs.append(df.loc[df.index[train_df_index]])
-            val_dfs.append(df.loc[df.index[val_df_index]])
+            train_dfs.append(df.iloc[train_df_index, :])
+            val_dfs.append(df.iloc[val_df_index, :])
+            print(train_df_index)
+            print(val_df_index)
     else:
-        df_temp = train_test_split(df, test_size=0.2, stratify=df, random_state=69)
+        df_temp = train_test_split(labels_1dim, test_size=0.3, stratify=df, random_state=55)
         train_dfs.append(df_temp[0])
         val_dfs.append(df_temp[1])
 
     dataloaders = list()
     for train_df, val_df in zip(train_dfs, val_dfs):
-        train_dataset = AEClassDataset(train_df, root, mean, std, 'train', crop=crop, height=height, width=width)
-        val_dataset = AEClassDataset(val_df, root, mean, std, 'val')
+        train_dataset = AEClassDataset(train_df, root, resize, mean, std, 'train', crop=crop, height=height, width=width)
+        val_dataset = AEClassDataset(val_df, root, resize, mean, std, 'val')
         train_dataloader = DataLoader(train_dataset,
                                       batch_size=batch_size,
                                       num_workers=num_workers,
@@ -51,10 +54,11 @@ def classify_provider(root, fold, n_splits, batch_size, num_workers, mean, std, 
 
 
 class AEClassDataset(Dataset):
-    def __init__(self, df, data_folder, mean, std, phase, crop=False, height=None, width=None):
+    def __init__(self, df, data_folder, resize, mean, std, phase, crop=False, height=None, width=None):
         super(AEClassDataset, self).__init__()
         self.df = df
         self.root = data_folder
+        self.resize = resize
         self.mean = mean
         self.std = std
         self.phase = phase
@@ -65,31 +69,31 @@ class AEClassDataset(Dataset):
         self.fnames = self.df.index.tolist()
 
     def __getitem__(self, idx):
-        label = np.array(self.df.iloc[idx, :])
-        image_path = os.path.join(self.root, "train dataset_cwt_-noise", str(idx + 1) + '.jpg')
+        label = np.argmax(np.array(self.df.iloc[idx, :]))
+        image_path = os.path.join(self.root, "train dataset_cwt", str(idx + 1) + '.jpg')
         img = cv2.imread(image_path)
-        img = self.transforms(self.phase, img, self.mean, self.std, crop=self.crop, height=self.height, width=self.width)
+        img = self.transforms(self.phase, img, self.resize, self.mean, self.std, crop=self.crop, crop_height=self.height,
+                              crop_width=self.width)
         return img, label
 
     def __len__(self):
         return len(self.fnames)
 
 
-def augmentation(image, crop=False, height=None, width=None):
-    image_aug = data_augmentation(image, crop=crop, height=height, width=width)
-    image_aug = Image.fromarray(image_aug)
+def augmentation(phase, image, resize, crop_height=None, crop_width=None):
+    image_aug = data_augmentation(phase, image, resize, crop_height, crop_width)
+    # image_aug = Image.fromarray(image_aug)
 
     return image_aug
 
 
-def get_transforms(phase, image, mean, std, crop=False, height=None, width=None):
+def get_transforms(phase, image, resize, mean, std, crop=False, crop_height=None, crop_width=None):
+    image = augmentation(phase, image, resize, crop_height, crop_width)
     # if phase == 'train':
-    image = augmentation(image, crop=crop, height=height, width=width)
-
-    to_tensor = transforms.ToTensor()
-    normalize = transforms.Normalize(mean, std)
-    transform_compose = transforms.Compose([to_tensor, normalize])
-    image = transform_compose(image)
+    #     image = augmentation(phase, image, crop=crop, height=height, width=width)
+    #     normalize = transforms.Normalize(mean, std)
+    #     transform_compose = transforms.Compose([to_tensor])
+    #     image = transform_compose(image)
 
     return image
 
