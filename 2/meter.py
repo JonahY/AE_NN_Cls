@@ -7,17 +7,18 @@ import torch
 
 
 def metric(logit, truth, threshold=0.5):
-    batch_size, num_class = logit.shape
-    # print(batch_size, num_class)
+    try:
+        batch_size, num_class, H, W = logit.shape
+    except:
+        batch_size, num_class = logit.shape
 
     with torch.no_grad():
         logit = logit.view(batch_size, num_class)
-        print(logit)
         # truth = truth.view(batch_size, num_class)
 
-        # probability = torch.sigmoid(logit)
+        probability = torch.sigmoid(logit)
         # print(probability)
-        p = (logit > threshold).float()
+        p = (probability > threshold).float()
         t = (truth > 0.5).float()
 
         tp = ((p + t) == 2).float()  # True positives
@@ -42,7 +43,6 @@ def metric(logit, truth, threshold=0.5):
 
         # tp = list(tp)
         # num_pos = list(num_pos)
-
     return tn, tp, num_neg, num_pos
 
 

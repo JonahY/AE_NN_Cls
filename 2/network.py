@@ -73,12 +73,16 @@ class ClassifyResNet(Module):
         self.encoder = model.encoder
         self.module = Module
         if model_name == 'unet_resnet34':
-            self.feature = nn.Conv2d(64, 32, kernel_size=1)
+            self.feature = nn.Sequential(
+                nn.Conv2d(512, 256, kernel_size=1),
+                nn.ReLU(),
+                nn.Conv2d(256, 32, kernel_size=1)
+            )
         elif model_name == 'unet_resnet50':
             self.feature = nn.Sequential(
-                nn.Conv2d(3, 512, kernel_size=1),
+                nn.Conv2d(1024, 128, kernel_size=1),
                 nn.ReLU(),
-                nn.Conv2d(512, 32, kernel_size=1)
+                nn.Conv2d(128, 2, kernel_size=1)
             )
         elif model_name == 'unet_se_resnext50_32x4d':
             self.feature = nn.Sequential(
@@ -88,7 +92,7 @@ class ClassifyResNet(Module):
             )
         elif model_name == 'unet_efficientnet_b4':
             self.feature = nn.Sequential(
-                nn.Conv2d(3, 160, kernel_size=1),
+                nn.Conv2d(48, 160, kernel_size=1),
                 nn.ReLU(),
                 nn.Conv2d(160, 32, kernel_size=1)
             )
@@ -106,11 +110,11 @@ class ClassifyResNet(Module):
     def forward(self, x):
         # print(x.size())
         x1 = self.encoder(x)
-        # for i in x:
-            # print(i.size())
+        # for i in x1:
+        #     print(i.size())
         x = F.dropout(x1[1], 0.5, training=self.training)
         x = F.adaptive_avg_pool2d(x, 1)
         x = self.feature(x)
-        logit = self.logit(x)
-
-        return logit, x1[0]
+        x = self.logit(x)
+        # print(x.squeeze(dim=2).squeeze(dim=2))
+        return x

@@ -16,9 +16,9 @@ class VGG(nn.Module):
         self.conv3_512b = self.__make_layer(512, arch[4])
         self.fc1 = nn.Linear(7*7*512, 4096)
         self.bn1 = nn.BatchNorm1d(4096)
-        self.bn2 = nn.BatchNorm1d(4096)
-        self.fc2 = nn.Linear(4096, 4096)
-        self.fc3 = nn.Linear(4096, num_classes)
+        self.bn2 = nn.BatchNorm1d(1024)
+        self.fc2 = nn.Linear(4096, 1024)
+        self.fc3 = nn.Linear(1024, num_classes)
 
     def __make_layer(self, channels, num):
         layers = []
@@ -47,7 +47,9 @@ class VGG(nn.Module):
         out = self.fc2(out)
         out = self.bn2(out)
         out = F.relu(out)
-        return F.softmax(self.fc3(out))
+        out = self.fc3(out)
+        # print(out)
+        return F.softmax(out)
 
 
 def VGG_11(num_classes):

@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="856aa83c-1276-423b-9778-e8ef884fff11" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2/cls.py" beforeDir="false" afterPath="$PROJECT_DIR$/2/cls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/2/dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2/loss.py" beforeDir="false" afterPath="$PROJECT_DIR$/2/loss.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2/network.py" beforeDir="false" afterPath="$PROJECT_DIR$/2/network.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/2/utils.py" afterDir="false" />
-    </list>
+    <list default="true" id="856aa83c-1276-423b-9778-e8ef884fff11" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -41,9 +33,7 @@
   </component>
   <component name="JupyterTrust" id="91697f68-892b-466a-978a-4a5fa145ee1a" />
   <component name="ProjectId" id="1neFSH9QnIeqfV4sxkja4TKCzLy" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -56,7 +46,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Django_project" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -88,6 +78,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="cls_dogcat" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="AE_NN_Cls" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/2" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/2/cls_dogcat.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="dataset (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="AE_NN_Cls" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -110,29 +122,29 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="dataset" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="dogcat" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="AE_NN_Cls" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="SDK_HOME" value="D:\Anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/2" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dataset.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/2/dogcat.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="predict" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="visu_featMap" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="AE_NN_Cls" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -140,14 +152,14 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/2" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/predict.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/2/visu_featMap.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -155,17 +167,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.dataset" />
-      <item itemvalue="Python.predict" />
       <item itemvalue="Python.dataset (1)" />
       <item itemvalue="Python.cls" />
+      <item itemvalue="Python.dogcat" />
+      <item itemvalue="Python.cls_dogcat" />
+      <item itemvalue="Python.visu_featMap" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.dataset (1)" />
         <item itemvalue="Python.cls" />
-        <item itemvalue="Python.dataset" />
-        <item itemvalue="Python.predict" />
+        <item itemvalue="Python.visu_featMap" />
+        <item itemvalue="Python.cls_dogcat" />
+        <item itemvalue="Python.dogcat" />
+        <item itemvalue="Python.dataset (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -181,18 +195,109 @@
       <workItem from="1611891178737" duration="33000" />
       <workItem from="1614560278132" duration="25464000" />
       <workItem from="1614740729235" duration="25854000" />
-      <workItem from="1615515089064" duration="21117000" />
-      <workItem from="1615735782553" duration="2395000" />
+      <workItem from="1615515089064" duration="62615000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="183" key="#Deployment" timestamp="1615712674794">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="552" y="183" key="#Deployment/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1615712674794" />
+    <state x="552" y="183" key="#Deployment/0.0.1920.1050@0.0.1920.1050" timestamp="1611743116324" />
+    <state x="605" y="200" key="#Options" timestamp="1614603108178">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="605" y="200" key="#Options/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1614603108178" />
+    <state x="605" y="200" key="#Options/0.0.1920.1050@0.0.1920.1050" timestamp="1611743191583" />
+    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1615770444702">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1615770444702" />
+    <state x="417" y="-901" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831066943" />
+    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1611744010002" />
+    <state x="703" y="325" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1615770317745">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="703" y="325" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1615770317745" />
+    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1616162716275">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616162716275" />
+    <state x="743" y="-801" key="FileChooserDialogImpl/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611891200039" />
+    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1611742742345" />
+    <state width="830" height="922" key="GridCell.Tab.0.bottom" timestamp="1616146547766">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="830" height="922" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616146547766" />
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
+    <state width="830" height="922" key="GridCell.Tab.0.center" timestamp="1616146547766">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="830" height="922" key="GridCell.Tab.0.center/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616146547766" />
+    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
+    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
+    <state width="830" height="922" key="GridCell.Tab.0.left" timestamp="1616146547765">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="830" height="922" key="GridCell.Tab.0.left/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616146547765" />
+    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
+    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
+    <state width="830" height="922" key="GridCell.Tab.0.right" timestamp="1616146547766">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="830" height="922" key="GridCell.Tab.0.right/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616146547766" />
+    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
+    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
+    <state width="830" height="922" key="GridCell.Tab.1.bottom" timestamp="1616146546207">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="830" height="922" key="GridCell.Tab.1.bottom/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616146546207" />
+    <state width="830" height="922" key="GridCell.Tab.1.center" timestamp="1616146546207">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="830" height="922" key="GridCell.Tab.1.center/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616146546207" />
+    <state width="830" height="922" key="GridCell.Tab.1.left" timestamp="1616146546207">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="830" height="922" key="GridCell.Tab.1.left/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616146546207" />
+    <state width="830" height="922" key="GridCell.Tab.1.right" timestamp="1616146546207">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="830" height="922" key="GridCell.Tab.1.right/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616146546207" />
+    <state x="461" y="169" key="SettingsEditor" timestamp="1615712356180">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="461" y="169" key="SettingsEditor/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1615712356180" />
+    <state x="464" y="-911" key="SettingsEditor/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611810153670" />
+    <state x="461" y="169" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1611742856560" />
+    <state x="441" y="-851" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1611831643435">
+      <screen x="3" y="-1080" width="1920" height="1050" />
+    </state>
+    <state x="441" y="-851" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831643435" />
+    <state x="438" y="229" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1920.1050@0.0.1920.1050" timestamp="1611746102369" />
+    <state x="751" y="409" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration" timestamp="1614602779610">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="751" y="409" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1614602779610" />
+    <state x="751" y="409" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.0.1920.1050@0.0.1920.1050" timestamp="1611742847660" />
+    <state x="851" y="255" key="ftp.server.browser" timestamp="1614607619768">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="851" y="255" key="ftp.server.browser/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1614607619768" />
+    <state x="851" y="255" key="ftp.server.browser/0.0.1920.1050@0.0.1920.1050" timestamp="1611743113025" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Cls$dataset__1_.coverage" NAME="dataset (1) Coverage Results" MODIFIED="1614603470957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
-    <SUITE FILE_PATH="coverage/AE_NN_Cls$dataset.coverage" NAME="dataset Coverage Results" MODIFIED="1611743999312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AE_NN_Cls$predict.coverage" NAME="predict Coverage Results" MODIFIED="1611830993246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Cls$cls.coverage" NAME="cls Coverage Results" MODIFIED="1614771856239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
+    <SUITE FILE_PATH="coverage/AE_NN_Cls$dataset.coverage" NAME="dataset Coverage Results" MODIFIED="1611743999312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Cls$cls.coverage" NAME="cls Coverage Results" MODIFIED="1616146540821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
+    <SUITE FILE_PATH="coverage/Cls$dogcat.coverage" NAME="dogcat Coverage Results" MODIFIED="1615771039801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
+    <SUITE FILE_PATH="coverage/Cls$visu_featMap.coverage" NAME="visu_featMap Coverage Results" MODIFIED="1616143643290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
+    <SUITE FILE_PATH="coverage/Cls$dataset__1_.coverage" NAME="dataset (1) Coverage Results" MODIFIED="1615166876222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
+    <SUITE FILE_PATH="coverage/Cls$cls_dogcat.coverage" NAME="cls_dogcat Coverage Results" MODIFIED="1615773274343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
   </component>
 </project>

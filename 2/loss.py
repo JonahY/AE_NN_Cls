@@ -13,7 +13,10 @@ class ClassifyLoss(nn.Module):
         self.weight = weight
 
     def forward(self, logit, truth):
-        batch_size, num_class, H, W = logit.shape
+        try:
+            batch_size, num_class, H, W = logit.shape
+        except:
+            batch_size, num_class = logit.shape
         logit = logit.view(batch_size, num_class)
         truth = truth.view(batch_size, num_class)
         assert(logit.shape == truth.shape)

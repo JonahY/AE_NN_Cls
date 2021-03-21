@@ -110,7 +110,7 @@ class Solver():
         '''
         torch.save(state, save_path)
         if is_best:
-            print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Saving Best Model>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+            print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Saving Best Model >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
             save_best_path = save_path.replace('.pth', '_best_{:.4f}.pth'.format(accuracy))
             shutil.copyfile(save_path, save_best_path)
     

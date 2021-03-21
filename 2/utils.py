@@ -16,25 +16,25 @@ sys.path.append('.')
 
 def data_augmentation(original_image, crop=False, height=None, width=None):
     augmentations = Compose([
-        Resize(224, 224),
+        # Resize(224, 224),
         # 直方图均衡化
-        CLAHE(p=0.3),
+        # CLAHE(p=0.3),
+        #
+        # # 亮度、对比度
+        # RandomGamma(gamma_limit=(80, 120), p=0.1),
+        # RandomBrightnessContrast(p=0.1),
 
-        # 亮度、对比度
-        RandomGamma(gamma_limit=(80, 120), p=0.1),
-        RandomBrightnessContrast(p=0.1),
+        # # 模糊
+        # OneOf([
+        #     MotionBlur(p=0.1),
+        #     MedianBlur(blur_limit=3, p=0.1),
+        #     Blur(blur_limit=3, p=0.1),
+        # ], p=0.3),
 
-        # 模糊
-        OneOf([
-            MotionBlur(p=0.1),
-            MedianBlur(blur_limit=3, p=0.1),
-            Blur(blur_limit=3, p=0.1),
-        ], p=0.3),
-
-        OneOf([
-            IAAAdditiveGaussianNoise(),
-            GaussNoise(),
-        ], p=0.2)
+        # OneOf([
+        #     IAAAdditiveGaussianNoise(),
+        #     GaussNoise(),
+        # ], p=0.2)
     ])
 
     if crop:

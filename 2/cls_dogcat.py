@@ -1,6 +1,5 @@
 from torch import optim
 import torch
-import torch.nn as nn
 from tqdm import tqdm
 from solver import Solver
 from torch.utils.tensorboard import SummaryWriter
@@ -10,20 +9,19 @@ import os
 import codecs, json
 import time
 import argparse
-
-from meter import Meter
+from torchvision import transforms, datasets, models
+from cal_classify_accuracy import Meter
 from set_seed import seed_torch
 import pickle
+from sklearn.preprocessing import OneHotEncoder
 import random
 from network import ClassifyResNet
 from dataset import classify_provider
 from loss import ClassifyLoss
-
-from torchvision import models
-from alexnet_pytorch import AlexNet
 from ResNeXt import ResNeXt
 # from Alexnet import AlexNet
-# from VGG import *
+from alexnet_pytorch import AlexNet
+from VGG import *
 import warnings
 warnings.filterwarnings('ignore', category=FutureWarning)
 
@@ -31,14 +29,14 @@ warnings.filterwarnings('ignore', category=FutureWarning)
 class TrainVal():
     def __init__(self, config):
         # self.model = ClassifyResNet(config.model_name, config.class_num, training=True)
-        self.model = models.alexnet(pretrained=False)
-        # self.model = models.vgg11(pretrained=True)
+        self.model = models.alexnet(pretrained=True)
+        # self.model = VGG_19(config.class_num)
+        # self.model = models.vgg19_bn(pretrained=True)
         # self.model = models.resnet50(pretrained=True)
 
-        # freeze model parameters
+        # # freeze model parameters
         for param in self.model.parameters():
             param.requires_grad = False
-
         self.model.classifier[6] = nn.Sequential(nn.Linear(4096, config.class_num))
         # # for param in self.model.feature.parameters():
         # #     param.requires_grad = True
@@ -47,48 +45,51 @@ class TrainVal():
         for param in self.model.classifier.parameters():
             param.requires_grad = True
 
-        # model check
-        print(self.model)
-        for name, param in self.model.named_parameters():
-            if param.requires_grad:
-                print("requires_grad: True ", name)
-            else:
-                print("requires_grad: False ", name)
-
-        self.device = torch.device("cpu")
         if torch.cuda.is_available():
             self.device = torch.device("cuda:%i" % config.device[0])
             self.model = torch.nn.DataParallel(self.model, device_ids=config.device)
-        self.model = self.model.to(self.device)
+            self.model = self.model.to(self.device)
+        else:
+            self.device = torch.device("cpu")
+            self.model = self.model.to(self.device)
 
+        # 加载超参数
         self.lr = config.lr
         self.weight_decay = config.weight_decay
         self.epoch = config.epoch
 
+        # 实例化实现各种子函数的 solver 类
         self.solver = Solver(self.model, self.device)
 
+        # 加载损失函数
         self.criterion = ClassifyLoss(weight=[0.8, 0.2])
 
+        # 创建保存权重的路径
         self.TIME = "{0:%Y-%m-%dT%H-%M-%S}-classify".format(datetime.datetime.now())
         self.model_path = os.path.join(config.root, config.save_path, config.model_name, self.TIME)
         if not os.path.exists(self.model_path):
             os.makedirs(self.model_path)
 
         self.max_accuracy_valid = 0
+        # 设置随机种子，注意交叉验证部分划分训练集和验证集的时候，要保持种子固定
         self.seed = int(time.time())
         # self.seed = 1570421136
         seed_torch(self.seed)
 
     def train(self, dataloaders):
-        optimizer = optim.Adam(filter(lambda p: p.requires_grad, self.model.module.parameters()), self.lr,
-                               weight_decay=self.weight_decay)
-        # optimizer = optim.SGD(filter(lambda p: p.requires_grad, self.model.module.parameters()), self.lr,
-        #                       momentum=0.9, weight_decay=self.weight_decay, nesterov=True)
+        # optimizer = optim.Adam(self.model.module.parameters(), self.lr, weight_decay=self.weight_decay)
+        optimizer = optim.SGD(self.model.module.parameters(), self.lr, momentum=0.9,
+                              weight_decay=self.weight_decay, nesterov=True)
         lr_scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, self.epoch + 50)
-        global_step = 1
+        global_step = 0
+
+        ohe = OneHotEncoder()
+        ohe.fit([[0], [1]])
 
         for fold_index, [train_loader, valid_loader] in enumerate(dataloaders):
-
+            if fold_index != 0:
+                continue
+            # 保存json文件和初始化tensorboard
             TIMESTAMP = '-fold'.join([self.TIME, str(fold_index)])
             self.writer = SummaryWriter(log_dir=os.path.join(self.model_path, TIMESTAMP))
             with codecs.open(os.path.join(self.model_path, TIMESTAMP, TIMESTAMP) + '.json', 'w', "utf-8") as json_file:
@@ -97,22 +98,25 @@ class TrainVal():
             with open(os.path.join(self.model_path, TIMESTAMP, TIMESTAMP) + '.pkl', 'wb') as f:
                 pickle.dump({'seed': self.seed}, f, -1)
 
-            for epoch in range(1, self.epoch + 1):
-                epoch += self.epoch * fold_index
+            for epoch in range(self.epoch):
+                epoch += 1
                 epoch_loss = 0
                 self.model.train(True)
 
                 tbar = tqdm(train_loader)
                 for i, (images, labels) in enumerate(tbar):
+                    labels = torch.from_numpy(ohe.transform(labels.reshape(-1, 1)).toarray())
+                    # 网络的前向传播与反向传播
                     labels_predict = self.solver.forward(images)
-                    # labels_predict = labels_predict.unsqueeze(dim=2).unsqueeze(dim=3)
+                    labels_predict = labels_predict.unsqueeze(dim=2).unsqueeze(dim=3)
                     loss = self.solver.cal_loss(labels, labels_predict, self.criterion)
                     # loss = F.cross_entropy(labels_predict[0], labels)
                     epoch_loss += loss.item()
                     self.solver.backword(optimizer, loss)
 
+                    # 保存到tensorboard，每一步存储一个
                     self.writer.add_scalar('train_loss', loss.item(), global_step + i)
-                    # self.writer.add_images('my_image_batch', images.cpu().detach().numpy(), global_step + i)
+                    self.writer.add_images('my_image_batch', images[:10].cpu().detach().numpy(), global_step + i)
                     params_groups_lr = str()
                     for group_ind, param_group in enumerate(optimizer.param_groups):
                         params_groups_lr = params_groups_lr + 'params_group_%d' % (group_ind) + ': %.12f, ' % (
@@ -120,15 +124,17 @@ class TrainVal():
                     descript = "Fold: %d, Train Loss: %.7f, lr: %s" % (fold_index, loss.item(), params_groups_lr)
                     tbar.set_description(desc=descript)
 
-                if epoch % 5 == 0:
-                    lr_scheduler.step()
+                # 每一个epoch完毕之后，执行学习率衰减
+                lr_scheduler.step()
                 global_step += len(train_loader)
 
+                # 验证模型
                 class_neg_accuracy, class_pos_accuracy, class_accuracy, neg_accuracy, pos_accuracy, accuracy, loss_valid = \
                     self.validation(valid_loader)
 
+                # Print the log info
                 print('Finish Epoch [%d/%d] | Average training Loss: %.7f | Average validation Loss: %.7f | Total accuracy: %0.4f |' % (
-                epoch, self.epoch * config.n_splits, epoch_loss / len(tbar), loss_valid, accuracy))
+                epoch, self.epoch, epoch_loss / len(tbar), loss_valid, accuracy))
 
                 if accuracy > self.max_accuracy_valid:
                     is_best = True
@@ -156,11 +162,15 @@ class TrainVal():
         tbar = tqdm(valid_loader)
         loss_sum = 0
 
+        ohe = OneHotEncoder()
+        ohe.fit([[0], [1]])
+
         with torch.no_grad():
             for i, (images, labels) in enumerate(tbar):
+                labels = torch.from_numpy(ohe.transform(labels.reshape(-1, 1)).toarray())
+                # 完成网络的前向传播
                 labels_predict = self.solver.forward(images)
-                # print(labels + (labels_predict.cpu() > 0.5).int())
-                # labels_predict = labels_predict.unsqueeze(dim=2).unsqueeze(dim=3)
+                labels_predict = labels_predict.unsqueeze(dim=2).unsqueeze(dim=3)
                 loss = self.solver.cal_loss(labels, labels_predict, self.criterion)
                 # loss = F.cross_entropy(labels_predict[0], labels)
                 loss_sum += loss.item()
@@ -187,42 +197,46 @@ class TrainVal():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--batch_size', type=int, default=32, help='batch size')
-    parser.add_argument('--epoch', type=int, default=10, help='epoch')
+    parser.add_argument('--batch_size', type=int, default=512, help='batch size')
+    parser.add_argument('--epoch', type=int, default=100, help='epoch')
     parser.add_argument('--n_splits', type=int, default=10, help='n_splits_fold')
     parser.add_argument("--device", type=int, nargs='+', default=[i for i in range(torch.cuda.device_count())])
     parser.add_argument('--crop', type=bool, default=False, help='if true, crop image to [height, width].')
     parser.add_argument('--height', type=int, default=None, help='the height of cropped image')
     parser.add_argument('--width', type=int, default=None, help='the width of cropped image')
     # model set
-    parser.add_argument('--model_name', type=str, default='unet_efficientnet_b4',
+    parser.add_argument('--model_name', type=str, default='AlexNet',
                         help='unet_resnet34/unet_se_resnext50_32x4d/unet_efficientnet_b4'
                              '/unet_resnet50/unet_efficientnet_b4')
     # model hyper-parameters
-    parser.add_argument('--class_num', type=int, default=3)
+    parser.add_argument('--class_num', type=int, default=2)
     parser.add_argument('--num_workers', type=int, default=8)
-    parser.add_argument('--lr', type=float, default=5e-5, help='init lr')
-    parser.add_argument('--weight_decay', type=float, default=0, help='weight_decay in optimizer')
+    parser.add_argument('--lr', type=float, default=1e-4, help='init lr')
+    parser.add_argument('--weight_decay', type=float, default=1e-5, help='weight_decay in optimizer')
     # dataset
     parser.add_argument('--save_path', type=str, default='./checkpoints')
-    parser.add_argument('--root', type=str, default='/home/Yuanbincheng/data/Ni-tension test-pure-1-0.01-AE-20201030')
+    parser.add_argument('--root', type=str, default='/home/Yuanbincheng/data/data2')
     parser.add_argument('--fold', type=str, default='train info_cwt_-noise.csv')
     config = parser.parse_args()
     print(config)
 
-    mean, std = (0.485, 0.456, 0.406), (0.229, 0.224, 0.225)
-    dataloaders = classify_provider(
-        config.root,
-        config.fold,
-        config.n_splits,
-        config.batch_size,
-        config.num_workers,
-        mean,
-        std,
-        config.crop,
-        config.height,
-        config.width
-        )
+    data_transform = transforms.Compose([
+        transforms.Resize(256),
+        transforms.CenterCrop(224),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
+
+    train_dataset = datasets.ImageFolder(root='/home/Yuanbincheng/data/data2/train/',
+                                         transform=data_transform)
+    train_loader = torch.utils.data.DataLoader(train_dataset,
+                                               batch_size=config.batch_size,
+                                               shuffle=True,
+                                               num_workers=config.num_workers)
+
+    test_dataset = datasets.ImageFolder(root='/home/Yuanbincheng/data/data2/test/', transform=data_transform)
+    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=config.batch_size, shuffle=True,
+                                              num_workers=config.num_workers)
 
     train_val = TrainVal(config)
-    train_val.train(dataloaders)
+    train_val.train([[train_loader, test_loader], [None, None]])
