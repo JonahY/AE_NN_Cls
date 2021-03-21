@@ -25,11 +25,9 @@ def classify_provider(root, fold, n_splits, batch_size, num_workers, resize, mea
     val_dfs = list()
     if n_splits != 1:
         skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=55)
-        for train_df_index, val_df_index in skf.split(df, labels_1dim):
+        for idx, [train_df_index, val_df_index] in enumerate(skf.split(df, labels_1dim), 1):
             train_dfs.append(df.iloc[train_df_index, :])
             val_dfs.append(df.iloc[val_df_index, :])
-            print(train_df_index)
-            print(val_df_index)
     else:
         df_temp = train_test_split(labels_1dim, test_size=0.3, stratify=df, random_state=55)
         train_dfs.append(df_temp[0])
@@ -38,16 +36,14 @@ def classify_provider(root, fold, n_splits, batch_size, num_workers, resize, mea
     dataloaders = list()
     for train_df, val_df in zip(train_dfs, val_dfs):
         train_dataset = AEClassDataset(train_df, root, resize, mean, std, 'train', crop=crop, height=height, width=width)
-        val_dataset = AEClassDataset(val_df, root, resize, mean, std, 'val')
+        val_dataset = AEClassDataset(val_df, root, resize, mean, std, 'val', crop=crop, height=height, width=width)
         train_dataloader = DataLoader(train_dataset,
                                       batch_size=batch_size,
                                       num_workers=num_workers,
-                                      pin_memory=False,
                                       shuffle=True)
         val_dataloader = DataLoader(val_dataset,
                                     batch_size=batch_size,
                                     num_workers=num_workers,
-                                    pin_memory=False,
                                     shuffle=False)
         dataloaders.append([train_dataloader, val_dataloader])
     return dataloaders

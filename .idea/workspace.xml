@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="856aa83c-1276-423b-9778-e8ef884fff11" name="Default Changelist" comment="" />
+    <list default="true" id="856aa83c-1276-423b-9778-e8ef884fff11" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2/2.py" beforeDir="false" afterPath="$PROJECT_DIR$/2/2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2/2训练模型.py" beforeDir="false" afterPath="$PROJECT_DIR$/2/2训练模型.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/2/dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/2/utils.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,7 +52,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Django_project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -70,6 +76,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/2/2训练模型.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="AE_NN_Cls" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/2" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/2/2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -176,8 +204,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.2" />
-        <item itemvalue="Python.cls_done" />
         <item itemvalue="Python.2训练模型" />
+        <item itemvalue="Python.cls_done" />
         <item itemvalue="Python.cls" />
         <item itemvalue="Python.visu_featMap" />
       </list>
@@ -196,110 +224,23 @@
       <workItem from="1614560278132" duration="25464000" />
       <workItem from="1614740729235" duration="25854000" />
       <workItem from="1615515089064" duration="73576000" />
+      <workItem from="1616337363491" duration="3871000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="552" y="183" key="#Deployment" timestamp="1615712674794">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="552" y="183" key="#Deployment/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1615712674794" />
-    <state x="552" y="183" key="#Deployment/0.0.1920.1050@0.0.1920.1050" timestamp="1611743116324" />
-    <state x="605" y="200" key="#Options" timestamp="1614603108178">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="605" y="200" key="#Options/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1614603108178" />
-    <state x="605" y="200" key="#Options/0.0.1920.1050@0.0.1920.1050" timestamp="1611743191583" />
-    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616326926199">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616326926199" />
-    <state x="417" y="-901" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831066943" />
-    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1611744010002" />
-    <state x="703" y="325" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1615770317745">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="703" y="325" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1615770317745" />
-    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1616162716275">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616162716275" />
-    <state x="743" y="-801" key="FileChooserDialogImpl/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611891200039" />
-    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1611742742345" />
-    <state width="1877" height="271" key="GridCell.Tab.0.bottom" timestamp="1616337167606">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="271" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616337167606" />
-    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
-    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
-    <state width="1877" height="271" key="GridCell.Tab.0.center" timestamp="1616337167606">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="271" key="GridCell.Tab.0.center/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616337167606" />
-    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
-    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
-    <state width="1877" height="271" key="GridCell.Tab.0.left" timestamp="1616337167606">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="271" key="GridCell.Tab.0.left/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616337167606" />
-    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
-    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
-    <state width="1877" height="271" key="GridCell.Tab.0.right" timestamp="1616337167606">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="271" key="GridCell.Tab.0.right/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616337167606" />
-    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831062597" />
-    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1611744002799" />
-    <state width="830" height="922" key="GridCell.Tab.1.bottom" timestamp="1616326476922">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="830" height="922" key="GridCell.Tab.1.bottom/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616326476922" />
-    <state width="830" height="922" key="GridCell.Tab.1.center" timestamp="1616326476915">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="830" height="922" key="GridCell.Tab.1.center/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616326476915" />
-    <state width="830" height="922" key="GridCell.Tab.1.left" timestamp="1616326476915">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="830" height="922" key="GridCell.Tab.1.left/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616326476915" />
-    <state width="830" height="922" key="GridCell.Tab.1.right" timestamp="1616326476922">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="830" height="922" key="GridCell.Tab.1.right/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1616326476922" />
-    <state x="461" y="169" key="SettingsEditor" timestamp="1615712356180">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="461" y="169" key="SettingsEditor/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1615712356180" />
-    <state x="464" y="-911" key="SettingsEditor/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611810153670" />
-    <state x="461" y="169" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1611742856560" />
-    <state x="441" y="-851" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1611831643435">
-      <screen x="3" y="-1080" width="1920" height="1050" />
-    </state>
-    <state x="441" y="-851" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1920.1050/3.-1080.1920.1050@3.-1080.1920.1050" timestamp="1611831643435" />
-    <state x="438" y="229" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1920.1050@0.0.1920.1050" timestamp="1611746102369" />
-    <state x="751" y="409" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration" timestamp="1614602779610">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="751" y="409" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1614602779610" />
-    <state x="751" y="409" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.0.1920.1050@0.0.1920.1050" timestamp="1611742847660" />
-    <state x="851" y="255" key="ftp.server.browser" timestamp="1614607619768">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="851" y="255" key="ftp.server.browser/0.0.1920.1050/1920.0.1440.870@0.0.1920.1050" timestamp="1614607619768" />
-    <state x="851" y="255" key="ftp.server.browser/0.0.1920.1050@0.0.1920.1050" timestamp="1611743113025" />
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/AE_NN_Cls$predict.coverage" NAME="predict Coverage Results" MODIFIED="1611830993246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Cls$2.coverage" NAME="2 Coverage Results" MODIFIED="1616336238701" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
-    <SUITE FILE_PATH="coverage/AE_NN_Cls$dataset.coverage" NAME="dataset Coverage Results" MODIFIED="1611743999312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Cls$cls.coverage" NAME="cls Coverage Results" MODIFIED="1616146540821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
     <SUITE FILE_PATH="coverage/Cls$dogcat.coverage" NAME="dogcat Coverage Results" MODIFIED="1615771039801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
-    <SUITE FILE_PATH="coverage/Cls$visu_featMap.coverage" NAME="visu_featMap Coverage Results" MODIFIED="1616143643290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
     <SUITE FILE_PATH="coverage/Cls$dataset__1_.coverage" NAME="dataset (1) Coverage Results" MODIFIED="1615166876222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
+    <SUITE FILE_PATH="coverage/Cls$2.coverage" NAME="2 Coverage Results" MODIFIED="1616336238701" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
     <SUITE FILE_PATH="coverage/Cls$cls_done.coverage" NAME="cls_done Coverage Results" MODIFIED="1616335405709" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
     <SUITE FILE_PATH="coverage/Cls$cls_dogcat.coverage" NAME="cls_dogcat Coverage Results" MODIFIED="1615773274343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
+    <SUITE FILE_PATH="coverage/Cls$visu_featMap.coverage" NAME="visu_featMap Coverage Results" MODIFIED="1616143643290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
+    <SUITE FILE_PATH="coverage/AE_NN_Cls$dataset.coverage" NAME="dataset Coverage Results" MODIFIED="1611743999312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AE_NN_Cls$2.coverage" NAME="2 Coverage Results" MODIFIED="1616342622682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
+    <SUITE FILE_PATH="coverage/AE_NN_Cls$predict.coverage" NAME="predict Coverage Results" MODIFIED="1611830993246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Cls$cls.coverage" NAME="cls Coverage Results" MODIFIED="1616146540821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2" />
   </component>
 </project>

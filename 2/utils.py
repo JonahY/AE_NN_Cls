@@ -25,7 +25,7 @@ def data_augmentation(phase, image, resize=256, crop_height=224, crop_width=224)
              transforms.RandomHorizontalFlip(),
              transforms.ToTensor()])
     else:
-        transform_compose = transforms.Compose([transforms.Resize(resize), transforms.ToTensor()])
+        transform_compose = transforms.Compose([transforms.Resize(crop_height), transforms.ToTensor()])
 
     image = transform_compose(Image.fromarray(image))
 
